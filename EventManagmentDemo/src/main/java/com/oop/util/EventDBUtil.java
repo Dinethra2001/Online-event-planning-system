@@ -86,7 +86,7 @@ public class EventDBUtil extends DBconnect {
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
-			String sql = "delete from event id='"+convId+"'";
+			String sql = "delete from event where id='"+convId+"'";
 			int rs = stmt.executeUpdate(sql);
 			
 			if(rs > 0) {
