@@ -25,12 +25,12 @@ public class EventDBUtil extends DBconnect {
 			
 			while(rs.next()) {
 				int id = rs.getInt(1);
-				String ename = rs.getNString(2);
-				String customername = rs.getNString(3);
-				String location = rs.getNString(4);
-				String purpose = rs.getNString(5);
-				String date = rs.getNString(6);
-				String time = rs.getNString(7);
+				String ename = rs.getString(2);
+				String customername = rs.getString(3);
+				String location = rs.getString(4);
+				String purpose = rs.getString(5);
+				String date = rs.getString(6);
+				String time = rs.getString(7);
 				
 				Event e = new Event(id,ename,customername,location,purpose,date,time);
 				eve.add(e);
