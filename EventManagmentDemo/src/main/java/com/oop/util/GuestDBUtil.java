@@ -14,7 +14,7 @@ public class GuestDBUtil extends DBconnect {
 	private static Statement stmt = null;
 	private static ResultSet rs = null;
 	
-	private static boolean validate(String username,String password) {
+	public static boolean validate(String username,String password) {
 		try {
 			con = getConnection();
 			stmt = con.createStatement();

@@ -14,7 +14,7 @@ public class PaymentDBUtil extends DBconnect {
 	private static Statement stmt = null;
 	private static ResultSet rs = null;
 	
-	private static boolean validate(String cardno,String cardtype) {
+	public static boolean validate(String cardno,String cardtype) {
 		try {
 			con = getConnection();
 			stmt = con.createStatement();
