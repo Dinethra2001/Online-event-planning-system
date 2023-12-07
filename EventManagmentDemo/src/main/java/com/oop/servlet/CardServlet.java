@@ -11,33 +11,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oop.model.Booking;
-import com.oop.util.bookingDBUtill;
+import com.oop.model.Payment;
+import com.oop.util.PaymentDBUtil;
 
-@WebServlet("/BookingServelet")
-public class BookingServelet extends HttpServlet {
+@WebServlet("/cardServlet")
+public class CardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+      
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
-		String bookingID = request.getParameter("bookID");
+		String cardno = request.getParameter("cno");
+		String cardtype = request.getParameter("ctype");
 		boolean isTrue;
 		
-		isTrue = bookingDBUtill.validate(bookingID);
-		if(isTrue == true) {
-			List<Booking> bookingDetails = bookingDBUtill.getBookingDetails(bookingID);
-			request.setAttribute("BookingDetails",bookingDetails);
-			
-			RequestDispatcher dis = request.getRequestDispatcher("bookingdata.jsp");
-			dis.forward(request,response);
-		}
+		isTrue = PaymentDBUtil.validate(cardno, cardtype);
 		
+		if(isTrue == true) {
+			List<Payment> payDetails = PaymentDBUtil.getPayment(cardno);
+			request.setAttribute("payDetails",payDetails);
+			
+			RequestDispatcher dis = request.getRequestDispatcher("paymentdetails.jsp");
+			dis.forward(request,response);	
+		}
 		else {
 			out.println("<script type='text/javascript'>");
-			out.println("alert('Booking ID is incorrrect'");
-			out.println("location=booking.jsp");
+			out.println("alert('Your cardno or cardtype is incorrect.')");
+			out.println("location='carddetails.jsp'");
 			out.println("</script>");
 		}
 	}
